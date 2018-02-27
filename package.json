@@ -1,0 +1,42 @@
+{
+  "name": "peak",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "./bin/babel-node app.js",
+    "babel-node": "babel-node --presets=latest",
+    "start:dev": "nodemon --exec npm run babel-node -- ./app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbrahamFergie/Peak.git"
+  },
+  "author": "abraham ferguson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AbrahamFergie/Peak/issues"
+  },
+  "homepage": "https://github.com/AbrahamFergie/Peak#readme",
+  "dependencies": {
+    "babel-preset-es2017": "^6.24.1",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^5.0.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "google-auth-library": "0.*",
+    "googleapis": "^26.0.1",
+    "node-gmail-api": "^0.6.1",
+    "passport": "^0.4.0",
+    "passport-google-oauth": "^1.0.0",
+    "request": "^2.83.0",
+    "uikit": "^3.0.0-beta.40"
+  },
+  "devDependencies": {
+    "babel-preset-latest": "^6.24.1",
+    "nodemon": "^1.15.0"
+  }
+}

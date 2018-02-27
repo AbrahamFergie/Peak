@@ -1,0 +1,71 @@
+body {
+	margin: 0;	
+    flex-direction: column;
+	background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+body, header,footer, main, .nav-container, .container, .footer-container {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button, input {
+	border: 1.5px solid #1c1c1c
+}
+form {
+	margin: 0;
+	margin-right: 5px
+}
+h1, p {
+	color: #fafafa;
+}
+h1 {
+    font-size: 5em;
+    font-weight: bolder;
+    text-shadow: 0px 10px 10px #111414;
+}
+hr {
+	margin: 0;
+    width: 100%;
+    mix-blend-mode: difference;
+}
+header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+footer {
+    position: absolute;   
+    bottom: 0px;
+    width: 100%;
+}
+#navies {
+    color: #1c1c1c;
+    mix-blend-mode: luminosity;
+    font-size: 1.8em;
+    font-weight: bolder;
+    background-color: #fafafa;
+}
+.header-ele {
+	margin: 0;
+	color: #fafafa;
+    font-size: 6em;
+    font-weight: bolder;
+    text-shadow: 0px 10px 10px #1c1c1c;
+}
+.nav-container {
+	width: 100%;
+	margin: 15px 0px 75px 0px;
+}
+.container {
+	background-color: rgba(0,0,0,0.6);
+    height: 3em;
+    width: 18em;   
+}
+.footer-container {
+	background-color: rgba(0,0,0,0.6);
+    height: 3em;
+    width: 100%;
+   
+}
