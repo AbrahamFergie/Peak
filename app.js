@@ -3,12 +3,19 @@ const express = require("express")
 const path = require("path")
 const cookieParser = require("cookie-parser")
 const bodyParser = require("body-parser")
+const mongoose = require("mongoose")
 const session = require("express-session")
 const passport = require("passport")
 
 const app = express()
 const port = process.env.PORT || "3000"
 const indexRoutes = require("./routes/index")
+const dbConfig = require("./config/database.js")
+
+
+mongoose.connect(process.env.NODE_ENV === "development" ? 
+	"mongodb://localhost:27017/Peak" : dbConfig.url
+).catch(err => console.log(err))
 
 app.set("view engine", "ejs")
 

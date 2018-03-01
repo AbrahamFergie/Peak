@@ -8,7 +8,7 @@ const displayInbox = require("../utilities/googleLogin.js")
 
 router.get("/", (req, res) => {
 	// console.log("initial get route",JSON.stringify(req.user, null, 4))
-	const userName = req.user ? req.user.profile.displayName : "There"
+	const userName = req.user ? req.user.profile.displayName : "Hello There"
 	const messages = req.user ? req.user.messages : "Login In To See Messages" 
 
 	res.render("../views/pages/home", {userName, messages})
@@ -34,5 +34,10 @@ router.get("/google/callback", passportGoogle.authenticate('google', { failureRe
 		// console.log("thiangeohskgtsenak", req.user)
 		res.redirect('/')}
 )
+
+router.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
 
 module.exports = router
