@@ -7,7 +7,6 @@ const passportGoogle = require("../auth/google");
 const {gmail, loadMail} = require("../utilities/index")
 
 router.get("/", (req, res) => {
-	console.log("req.user",req.user)
 	const userName = req.user ? req.user.user.google.name : "Hello There"
 	const googleMail = req.user ? req.user.mailData : "Login To View Mail"
 	
