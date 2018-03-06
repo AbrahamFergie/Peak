@@ -1,11 +1,9 @@
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
-const Gmail = require("node-gmail-api")
-const {google} = require("googleapis")
-const googleAuth = require('google-auth-library');
-const gmail = google.gmail("v1")
-
-const User = require("../models/user")
+const passport       = require("passport"),
+      GoogleStrategy = require("passport-google-oauth").OAuth2Strategy,
+      Gmail          = require("node-gmail-api"),
+      Gcalendar      = require("google-calendar"),
+      User           = require("../models/user"),
+      utils          = require("../utilities/index")
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -14,54 +12,44 @@ passport.use(new GoogleStrategy({
   },
   (accessToken, refreshToken, profile, done) => {
   	process.nextTick(function() {
+        let mail = utils.gmail(accessToken, refreshToken)
+        mail.then(mailData => {            
+            User.findOne({ 'google.id' : profile.id }, function(err, user) {
+                if (err) return done(err);
+
+                if (user) {
+                    user.google.gmailData = mailData                    
+                    return done(null, {user, mailData});
+                } else {
+                    const newUser = new User();
+                    newUser.google.id    = profile.id;
+                    newUser.google.token = accessToken;
+                    newUser.google.name  = profile.displayName;
+                    newUser.google.email = profile.emails[0].value;
+                    newUser.save(function(err) {
+                        if (err) throw err;
+                        newUser.google.gmailData = mailData                        
+                        return done(null, {newUser, mailData});
+                    });
+                }
+            });
+        })
         // try to find the user based on their google id
-        User.findOne({ 'google.id' : profile.id }, function(err, user) {
-            if (err)
-                return done(err);
-
-            if (user) {
-                // if a user is found, log them in
-                return done(null, user);
-            } else {
-                // if the user isnt in our database, create a new user
-                const newUser = new User();
-                // set all of the relevant information
-                newUser.google.id    = profile.id;
-                newUser.google.token = accessToken;
-                newUser.google.name  = profile.displayName;
-                newUser.google.email = profile.emails[0].value; // pull the first email
-
-                // save the user
-                newUser.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, newUser);
-                });
-            }
-        });
+        // const google_mail     = new Gmail(accessToken),
+              // google_calendar = new Gcalendar(accessToken),
+              // messages        = google_mail.messages('label:inbox', {max: 10})
+        
+        // messages.on('data', function (d) {
+        //   console.log(d.snippet)
+        // })
+        // google_calendar.calendarList.list(function(err, calendarList) {
+        //     // console.log("calendarList",calendarList)
+            
+        //     google_calendar.events.list(calendarList.items[0].id, function(err, calendarList1) {
+        //         console.log("calendarList1", calendarList1)
+        //     });
+        // });
     });
- //  	const auth = new googleAuth() 
-	// const oauth2Client = new auth.OAuth2(
-	// 	process.env.GOOGLE_CLIENT_ID,
-	//     process.env.GOOGLE_CLIENT_SECRET,
-	//     process.env.GOOGLE_REDIRECT_URI
-	// )
-	// oauth2Client.credentials = {
-	//   access_token: accessToken,
-	//   refresh_token: refreshToken,
-	//   token_type: "Bearer"	  
-	// };
-	// // console.log("gmail",gmail.users.messages.get)
-	// gmail.users.messages.list(
-	// 	{
-	// 		auth: oauth2Client,
-	// 		userId: 'me'
-	// 	}, function(err, response){
-	// 		if(err) throw err
-	// 		console.log("MESSAGES", response)
-	// 	}
-	// )
-	return done(null, {profile})
   }
 ));
 

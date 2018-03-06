@@ -1,0 +1,13 @@
+<%
+	const loadMail = () => {
+		console.log("=================in loadMail func===============")
+		request
+			.get("http://localhost:3000/google/load-mail")
+			.on("error", (error) => console.log(error))
+			.on("response",  (response) => {		
+				console.log("things===================made it")
+				return response			
+			})
+			// .pipe(fs.createWriteStream(response))			
+	}
+%>
