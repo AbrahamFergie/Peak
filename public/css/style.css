@@ -12,12 +12,17 @@ body, footer, main, .nav-container, .container, .footer-container {
 button, input {
 	border: 1.5px solid #1c1c1c
 }
+footer {
+    position: absolute;   
+    bottom: 0px;
+    width: 100%;
+}
 form {
-	margin: 0;
-	margin-right: 5px
+    margin: 0;
+    margin-right: 5px
 }
 h1, p {
-	color: #fafafa;
+    color: #fafafa;
 }
 h1 {
     font-size: 5em;
@@ -25,18 +30,19 @@ h1 {
     text-shadow: 0px 10px 10px #111414;
 }
 hr {
-	margin: 0;
+    margin: 0;
     width: 100%;
     mix-blend-mode: difference;
 }
 header {
-	position: absolute;
-	top: 0em;
+    position: absolute;
+    top: 0em;
 }
-footer {
-    position: absolute;   
-    bottom: 0px;
-    width: 100%;
+li {
+    color: #fafafa;
+}
+ul {
+    height: 36em;
 }
 #header-separator {
 	color: #1c1c1c;
@@ -70,6 +76,7 @@ footer {
     background-color: rgba(0,0,0,0.6);
     height: 39em;
     width: 61em; 
+    overflow-y: scroll;
 }
 .footer-container {
 	background-color: rgba(0,0,0,0.6);
