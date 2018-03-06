@@ -19,11 +19,11 @@
 <div class="container">		
     <!-- <p>Peak Your Performance</p> -->
     <ul class="uk-list uk-list">
-    	<% googleMail.forEach(function(message){ %>
+    	<% typeof googleMail === 'object' ? googleMail.forEach(function(message){ %>
     		<div class="uk-card-body">
     			<li class="uk-card">-->&nbsp<%= message%></li>
     		</div>
-    	<%	}) %> 
+    	<%	}) : googleMail%> 
     </ul>
 	<!-- <button class="uk-button uk-button-default" type="button">Get Mail</button>     -->
 </div>    
