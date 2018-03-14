@@ -1,29 +1,16 @@
 
-<div class="uk-position-relative nav-container">
-    <form action="/google" method="GET">
-		<button id="navies" class="uk-button uk-button-default" type="submit"><i class="fab fa-google-plus"></i> Login</button>
+<div class="uk-position-relative main-container">
+    <form id="login-button" action="/google" method="GET">
+		<button id="main-buttons" class="uk-button uk-button-danger" type="submit">Login <i id="google-plus-icon" class="fab fa-google-plus"></i></button>
     </form>
-    <!-- uk-margin-small-right" -->
-	<button id="navies" class="uk-button uk-button-default" type="button" uk-toggle="target: #modal-example">Open</button>
-	<div id="modal-example" uk-modal>
-	    <div class="uk-modal-dialog uk-modal-body">
-	        <h2 class="uk-modal-title">Headline</h2>
-	        <p id="content"><% %>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	        <p class="uk-text-right">
-	            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-	            <button class="uk-button uk-button-primary" type="button">Save</button>
-	        </p>
-	    </div>
-	</div>
-</div>
-<div class="container">		
+<div id="view-space" class="container">
     <!-- <p>Peak Your Performance</p> -->
-    <ul class="uk-list uk-list">
+    <ul class="uk-list uk-list-divider">
     	<% typeof googleMail === 'object' ? googleMail.forEach(function(message){ %>
     		<div class="uk-card-body">
     			<li class="uk-card">-->&nbsp<%= message%></li>
     		</div>
-    	<%	}) : googleMail%> 
+    	<%	}) : googleMail%>
     </ul>
-	<!-- <button class="uk-button uk-button-default" type="button">Get Mail</button>     -->
+	<button id="view-space-button" class="uk-button uk-button-primary" onclick="makeFullScreen('view-space')" type="button">Full-Screen</button>
 </div>    

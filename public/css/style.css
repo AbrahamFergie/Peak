@@ -10,7 +10,7 @@ body, footer, main, .nav-container, .container, .footer-container {
     align-items: center;
 }
 button, input {
-	border: 1.5px solid #1c1c1c
+	border: 1.5px solid #1c1c1c;
 }
 footer {
     position: absolute;   
@@ -40,6 +40,13 @@ header {
 }
 li {
     color: #fafafa;
+    border-bottom: 1px solid #fafafa;
+}
+main {
+    position: fixed;
+    height: 70%;
+    width: 70%;
+    bottom: 8.3%;
 }
 ul {
     height: 36em;
@@ -47,12 +54,24 @@ ul {
 #header-separator {
 	color: #1c1c1c;
 }
-#navies {
+#login-button {
+    position: fixed;
+    top: 10%;
+    left: 45%;
+}
+#main-buttons {
     color: #1c1c1c;
     mix-blend-mode: luminosity;
-    font-size: 1.8em;
     font-weight: bolder;
-    background-color: #fafafa;
+    font-size: 1.4em;
+    width: 6.2em;
+    padding: 0px;
+}
+#view-space-button {
+    position: fixed;
+    top: 17.5%;
+    left: 42.4%;
+    width: 16.5em;
 }
 .column-flex {
 	display: flex;
@@ -67,15 +86,14 @@ ul {
     font-weight: bolder;
     text-shadow: 0px 10px 10px #1c1c1c;
 }
-.nav-container {
+.main-container {
 	width: 100%;
-	margin: 15px 0px 30px 0px;
+    height: 100%;
 }
 .container {
-    margin: 0px 0px 0px 25px;
     background-color: rgba(0,0,0,0.6);
-    height: 39em;
-    width: 61em; 
+    height: 100%;
+    width: 100%; 
     overflow-y: scroll;
 }
 .footer-container {

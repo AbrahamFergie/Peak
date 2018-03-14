@@ -1,0 +1,30 @@
+<script type="text/javascript">
+	let randNum = Math.floor(Math.random() * 44) + 1
+	
+	document.getElementsByTagName("body")[0].style.backgroundImage = "url(../images/image"+ randNum +".jpg)"
+	function startTime() {
+	    let today = new Date(),
+	    	hours = today.getHours(),
+	    	minutes = today.getMinutes(),
+	    	seconds = today.getSeconds();
+	    minutes = minutes < 10 ? `0${minutes}` : minutes;
+	    seconds = seconds < 10 ? `0${seconds}` : seconds;	    
+	    document.getElementById('clock').innerHTML =`${hours}:${minutes}:${seconds}`;
+	    setTimeout(startTime, 500);
+	}
+	function makeFullScreen() {
+		// let ele = document.getElementById(id)
+		let main = document.getElementsByTagName("main")[0]
+		// let button = document.getElementById("view-space-button")
+		if(main.style.width === "100%") {
+			main.style.height = "70%"
+			main.style.width = "70%"
+			main.style.bottom = "8.3%"
+		} else {
+			main.style.width = "100%"		
+			main.style.height = "100%"
+			main.style.bottom = "0%"					
+		}
+		console.log(main)
+	}
+</script>

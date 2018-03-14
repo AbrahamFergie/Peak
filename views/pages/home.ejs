@@ -16,20 +16,31 @@
 <footer>	
     <% include partials/footer %>
 </footer>
-<script type="text/javascript">
-	let randNum = Math.floor(Math.random() * 44) + 1
+<!--<script type="text/javascript">
+let randNum = Math.floor(Math.random() * 44) + 1
 	
-	document.getElementsByTagName("body")[0].style.backgroundImage = "url(../images/image"+ randNum +".jpg)"
-	function startTime() {
-	    let today = new Date(),
-	    	hours = today.getHours(),
-	    	minutes = today.getMinutes(),
-	    	seconds = today.getSeconds();
-	    minutes = minutes < 10 ? `0${minutes}` : minutes;
-	    seconds = seconds < 10 ? `0${seconds}` : seconds;	    
-	    document.getElementById('clock').innerHTML =`${hours}:${minutes}:${seconds}`;
-	    setTimeout(startTime, 500);
+document.getElementsByTagName("body")[0].style.backgroundImage = "url(../images/image"+ randNum +".jpg)"
+function startTime() {
+    let today = new Date(),
+    	hours = today.getHours(),
+    	minutes = today.getMinutes(),
+    	seconds = today.getSeconds();
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    seconds = seconds < 10 ? `0${seconds}` : seconds;	    
+    document.getElementById('clock').innerHTML =`${hours}:${minutes}:${seconds}`;
+    setTimeout(startTime, 500);
+}
+function makeFullScreen(id) {
+	let ele = document.getElementById(id)
+	let button = document.getElementById("view-space-button")
+	if(ele.style.width === "100%") {
+		ele.style.height = "39em"
+		ele.style.width = "61em"
+	} else {
+		ele.style.width = "100%"		
 	}
-</script>
+}
+</script> -->
+<% include partials/scripts %>
 </body>
 </html>

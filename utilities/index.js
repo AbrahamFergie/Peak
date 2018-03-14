@@ -18,6 +18,7 @@ module.exports = {
 			auth: oauth2Client
 		}) 
 
+
   		return new Promise((res, rej) => {
   			client.users.messages.list({
 			    auth: oauth2Client,
@@ -35,6 +36,7 @@ module.exports = {
 						'id': message.id
 						}, function(err, secondResponse){
 							if(err) reject(err)
+						    // console.log("========================", secondResponse.data.labelIds)
 							resolve(secondResponse.data.snippet)
 						})	
 					})
