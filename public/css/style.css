@@ -42,6 +42,10 @@ li {
     color: #fafafa;
     border-bottom: 1px solid #fafafa;
 }
+li.uk-active {
+    background-color: #fafafa;
+    padding-left: 5px;
+}
 main {
     position: fixed;
     height: 70%;
@@ -52,12 +56,13 @@ ul {
     height: 36em;
 }
 #header-separator {
-	color: #1c1c1c;
+    color: #1c1c1c;
 }
 #login-button {
+    display: block;
     position: fixed;
-    top: 10%;
-    left: 45%;
+    top: 9%;
+    left: 45.6%;
 }
 #main-buttons {
     color: #1c1c1c;
@@ -67,11 +72,31 @@ ul {
     width: 6.2em;
     padding: 0px;
 }
+#stick-switcher {
+    position: sticky;
+    top: 15px;
+}
+#view-space {
+    margin: 0;
+}
 #view-space-button {
+    display: block;
     position: fixed;
     top: 17.5%;
     left: 42.4%;
     width: 16.5em;
+}
+#view-space-span {
+    position: absolute;
+    top: 1%;
+    left: 88%;
+    color: #fafafa;
+    background: #1c1c1c;
+    border: 1px solid #fafafa;
+    z-index: 1;
+    padding: 6px;
+    font-size: 1.3em;
+    font-weight: 900;
 }
 .column-flex {
 	display: flex;

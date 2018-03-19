@@ -3,14 +3,32 @@
     <form id="login-button" action="/google" method="GET">
 		<button id="main-buttons" class="uk-button uk-button-danger" type="submit">Login <i id="google-plus-icon" class="fab fa-google-plus"></i></button>
     </form>
-<div id="view-space" class="container">
-    <!-- <p>Peak Your Performance</p> -->
-    <ul class="uk-list uk-list-divider">
-    	<% typeof googleMail === 'object' ? googleMail.forEach(function(message){ %>
-    		<div class="uk-card-body">
-    			<li class="uk-card">-->&nbsp<%= message%></li>
-    		</div>
-    	<%	}) : googleMail%>
-    </ul>
-	<button id="view-space-button" class="uk-button uk-button-primary" onclick="makeFullScreen('view-space')" type="button">Full-Screen</button>
-</div>    
+
+
+<div uk-grid id="view-space" class="container">
+	<span id="view-space-span">Full-Screen</span>
+    <div id="stick-switcher" class="uk-width-small@m">
+
+        <ul class="uk-nav uk-nav-default" uk-switcher="connect: #component-nav; animation: uk-animation-fade; toggle: > :not(.uk-nav-header)">
+            <li><a href="#">Mail</a></li>
+            <li><a href="#">Indeed</a></li>
+            <li><a href="#">Stack-Overflow</a></li>
+        </ul>
+
+    </div>
+    <div class="uk-width-expand@m">
+
+        <ul id="component-nav" class="uk-switcher">
+            <ul class="uk-list uk-list-divider">
+		    	<% typeof googleMail === 'object' ? googleMail.forEach(function(message){ %>
+		    		<div class="uk-card-body">
+		    			<li class="uk-card"><%= message.date%>&nbsp-->&nbsp<%= message.snippet%></li>
+		    		</div>
+		    	<%	}) : googleMail%>
+		    </ul>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, sed do eiusmod.</p>
+        </ul>
+
+    </div>
+</div>
