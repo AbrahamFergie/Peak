@@ -2,7 +2,7 @@
 	let randNum = Math.floor(Math.random() * 44) + 1
 	
 	document.getElementsByTagName("body")[0].style.backgroundImage = `url(../images/image${randNum}.jpg)`
-	document.getElementById("view-space-span")
+	document.getElementById("view-space-button")
 		.addEventListener("click", toggleFullScreen)
 	
 	function toggleFullScreen() {

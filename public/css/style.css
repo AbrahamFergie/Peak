@@ -55,6 +55,9 @@ main {
 ul {
     height: 36em;
 }
+#default-text {
+    color: #fafafa;
+}
 #header-separator {
     color: #1c1c1c;
 }
@@ -74,7 +77,7 @@ ul {
 }
 #stick-switcher {
     position: sticky;
-    top: 15px;
+    top: 4em;
 }
 #view-space {
     margin: 0;
@@ -86,16 +89,18 @@ ul {
     left: 42.4%;
     width: 16.5em;
 }
-#view-space-span {
+#view-space-button {
+    width: 7em;
     position: absolute;
     top: 1%;
-    left: 88%;
+    left: 2.4em;
     color: #fafafa;
     background: #1c1c1c;
     border: 1px solid #fafafa;
     z-index: 1;
+    outline: none;
     padding: 6px;
-    font-size: 1.3em;
+    font-size: 1em;
     font-weight: 900;
 }
 .column-flex {
