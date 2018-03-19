@@ -10,7 +10,7 @@ body, footer, main, .nav-container, .container, .footer-container {
     align-items: center;
 }
 button, input {
-	border: 1.5px solid #1c1c1c
+	border: 1.5px solid #1c1c1c;
 }
 footer {
     position: absolute;   
@@ -40,19 +40,68 @@ header {
 }
 li {
     color: #fafafa;
+    border-bottom: 1px solid #fafafa;
+}
+li.uk-active {
+    background-color: #fafafa;
+    padding-left: 5px;
+}
+main {
+    position: fixed;
+    height: 70%;
+    width: 70%;
+    bottom: 8.3%;
 }
 ul {
     height: 36em;
 }
-#header-separator {
-	color: #1c1c1c;
+#default-text {
+    color: #fafafa;
 }
-#navies {
+#header-separator {
+    color: #1c1c1c;
+}
+#login-button {
+    display: block;
+    position: fixed;
+    top: 9%;
+    left: 45.6%;
+}
+#main-buttons {
     color: #1c1c1c;
     mix-blend-mode: luminosity;
-    font-size: 1.8em;
     font-weight: bolder;
-    background-color: #fafafa;
+    font-size: 1.4em;
+    width: 6.2em;
+    padding: 0px;
+}
+#stick-switcher {
+    position: sticky;
+    top: 4em;
+}
+#view-space {
+    margin: 0;
+}
+#view-space-button {
+    display: block;
+    position: fixed;
+    top: 17.5%;
+    left: 42.4%;
+    width: 16.5em;
+}
+#view-space-button {
+    width: 7em;
+    position: absolute;
+    top: 1%;
+    left: 2.4em;
+    color: #fafafa;
+    background: #1c1c1c;
+    border: 1px solid #fafafa;
+    z-index: 1;
+    outline: none;
+    padding: 6px;
+    font-size: 1em;
+    font-weight: 900;
 }
 .column-flex {
 	display: flex;
@@ -67,15 +116,14 @@ ul {
     font-weight: bolder;
     text-shadow: 0px 10px 10px #1c1c1c;
 }
-.nav-container {
+.main-container {
 	width: 100%;
-	margin: 15px 0px 30px 0px;
+    height: 100%;
 }
 .container {
-    margin: 0px 0px 0px 25px;
     background-color: rgba(0,0,0,0.6);
-    height: 39em;
-    width: 61em; 
+    height: 100%;
+    width: 100%; 
     overflow-y: scroll;
 }
 .footer-container {

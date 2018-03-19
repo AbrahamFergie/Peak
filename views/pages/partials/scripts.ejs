@@ -1,0 +1,17 @@
+<script type="text/javascript">
+	let randNum = Math.floor(Math.random() * 44) + 1
+	
+	document.getElementsByTagName("body")[0].style.backgroundImage = `url(../images/image${randNum}.jpg)`
+	document.getElementById("view-space-button")
+		.addEventListener("click", toggleFullScreen)
+	
+	function toggleFullScreen() {
+		let main = document.getElementsByTagName("main")[0],
+			loginBtn = document.getElementById("login-button"),
+			loginBtnStyle = loginBtn.style.display
+		loginBtn.style.display = loginBtnStyle === "none" ? "block" : "none"
+		main.style.width = main.style.width === "100%" ? "70%" : "100%" 
+		main.style.height = main.style.height === "100%" ? "70%" : "100%" 
+		main.style.bottom = main.style.bottom === "0%" ? "8.3%" : "0%" 
+	}
+</script>

@@ -1,6 +1,7 @@
 const {google}  = require("googleapis"),
 	  OAuth2 	= google.auth.OAuth2, 
-      Gcalendar = require("google-calendar")
+      Gcalendar = require("google-calendar"),
+      moment	= require("moment")
 
 module.exports = {
 	gmail: (accessToken, refreshToken) => {
@@ -17,6 +18,7 @@ module.exports = {
 			version: "v1",
 			auth: oauth2Client
 		}) 
+
 
   		return new Promise((res, rej) => {
   			client.users.messages.list({
@@ -35,14 +37,28 @@ module.exports = {
 						'id': message.id
 						}, function(err, secondResponse){
 							if(err) reject(err)
-							resolve(secondResponse.data.snippet)
+							resolve({
+								snippet: fixText(secondResponse.data.snippet),
+								date: formatTime(secondResponse.data.internalDate)
+							})
 						})	
 					})
 				});		
-				Promise.all(promises).then(data => {
-					return res(data)
-				})
+				Promise.all(promises)
+					.then(data => {
+						return res(data)
+					})
+					.catch(err => console.log(err))
 			});	
   		})
 	}	
+}
+function fixText (str) {
+	return str
+		.replace(/&#39;/g, "'")
+		.replace(/&amp;/g, "&")
+		.replace(/&quot;/g, '"')
+}
+function formatTime (time) {
+	return moment(parseInt(time)).format("Do of MMM YYYY HH:mm:ss")
 }

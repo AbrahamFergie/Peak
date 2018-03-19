@@ -11,9 +11,12 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.GOOGLE_REDIRECT_URI
   },
   (accessToken, refreshToken, profile, done) => {
+    // console.log(profile)
   	process.nextTick(function() {
         let mail = utils.gmail(accessToken, refreshToken)
         mail.then(mailData => {            
+            
+
             User.findOne({ 'google.id' : profile.id }, function(err, user) {
                 if (err) return done(err);
 
