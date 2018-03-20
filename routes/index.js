@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 
 	// console.log(req.user)
 	const userName = req.user ? req.user.user.google.name : "Hello There" 
-	const googleMail = req.user ? req.user.mailData : "Login In To See Messages"
+	const googleMail = req.user ? req.user.mailData : "Login In To See Mail"
 	res.render("../views/pages/home", {userName, googleMail})
 })
 

@@ -19,11 +19,15 @@
     <div class="uk-width-expand@m">
         <ul id="component-nav" class="uk-switcher">
             <ul class="uk-list uk-list-divider">
-		    	<% typeof googleMail === 'object' ? googleMail.forEach(function(message){ %>
+		    	<% googleMail.forEach(function(message){ %>
 		    		<div class="uk-card-body">
-		    			<li class="uk-card"><%= message.date%>&nbsp-->&nbsp<%= message.snippet%></li>
+		    			<li id="mail-item" class="uk-card">
+			    			<u><%= message.date%></u>
+			    			<br>
+			    			<%= message.snippet%>
+			    		</li>
 		    		</div>
-		    	<%	}) : googleMail%>
+		    	<%	}) %>
 		    </ul>
             <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, sed do eiusmod.</p>
@@ -32,5 +36,5 @@
     </div>
 </div>
 <% } else { %>
-<div uk-grid id="view-space" class="container"><h1 id="default-text">Log In To View Your Mail</h1></div>
+<div uk-grid id="view-space" class="container"><h1 id="default-text"><%= googleMail %></h1></div>
 <% }%>

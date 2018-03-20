@@ -67,6 +67,10 @@ ul {
     top: 9%;
     left: 45.6%;
 }
+#mail-item {
+    font-size: 1.3em;
+    font-weight: 900;
+}
 #main-buttons {
     color: #1c1c1c;
     mix-blend-mode: luminosity;

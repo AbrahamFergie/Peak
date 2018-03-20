@@ -24,7 +24,7 @@ module.exports = {
   			client.users.messages.list({
 			    auth: oauth2Client,
 			    userId: 'me',
-			  }, function(err, firstResponse) {
+			  }, (err, firstResponse)=> {
 			    if (err) {
 			      console.log('The API returned an error: ' + err);
 			      return;
@@ -35,11 +35,11 @@ module.exports = {
 						client.users.messages.get({
 						'userId': "me",
 						'id': message.id
-						}, function(err, secondResponse){
+						}, (err, secondResponse) => {
 							if(err) reject(err)
 							resolve({
-								snippet: fixText(secondResponse.data.snippet),
-								date: formatTime(secondResponse.data.internalDate)
+								snippet: _fixText(secondResponse.data.snippet),
+								date: _formatTime(secondResponse.data.internalDate)
 							})
 						})	
 					})
@@ -53,12 +53,12 @@ module.exports = {
   		})
 	}	
 }
-function fixText (str) {
+function _fixText(str) {
 	return str
 		.replace(/&#39;/g, "'")
 		.replace(/&amp;/g, "&")
 		.replace(/&quot;/g, '"')
 }
-function formatTime (time) {
+function _formatTime(time) {
 	return moment(parseInt(time)).format("Do of MMM YYYY HH:mm:ss")
 }
