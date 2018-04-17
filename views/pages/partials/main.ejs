@@ -1,40 +1,67 @@
-
 <div class="uk-position-relative main-container">
     <form id="login-button" action="/google" method="GET">
 		<button id="main-buttons" class="uk-button uk-button-danger" type="submit">Login <i id="google-plus-icon" class="fab fa-google-plus"></i></button>
     </form>
-
 <% if(typeof googleMail === "object") { %>
 <div uk-grid id="view-space" class="container">
 	<button id="view-space-button">Full-Screen</button>
     <div id="stick-switcher" class="uk-width-small@m">
-
         <ul class="uk-nav uk-nav-default" uk-switcher="connect: #component-nav; animation: uk-animation-fade; toggle: > :not(.uk-nav-header)">
-            <li><a href="#">Mail</a></li>
-            <li><a href="#">Indeed</a></li>
-            <li><a href="#">Stack-Overflow</a></li>
+            <li><a href="#">G-Mail</a></li>
+            <li><a href="#">Dev Docs</a></li>
+            <li><a href="#">Job Search</a></li>
         </ul>
-
     </div>
     <div class="uk-width-expand@m">
         <ul id="component-nav" class="uk-switcher">
-            <ul class="uk-list uk-list-divider">
-		    	<% googleMail.forEach(function(message){ %>
-		    		<div class="uk-card-body">
-		    			<li id="mail-item" class="uk-card">
-			    			<u><%= message.date%></u>
-			    			<br>
-			    			<%= message.snippet%>
-			    		</li>
-		    		</div>
-		    	<%	}) %>
-		    </ul>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, sed do eiusmod.</p>
+	        <div>
+	            <div id="email-top" class="uk-heading-line uk-text-center"><u>Emails</u></div>
+			    <a class="uk-button uk-button-primary" href="#email-top" uk-scroll>Scroll Top</a>
+	            <ul class="uk-list uk-list-divider">
+			    	<% googleMail.forEach(function(message){ %>
+			    		<div class="uk-card-body">
+			    			<li id="mail-item" class="uk-card" uk-toggle="target: #email-modal">
+				    			<u><%= message.date%></u>
+				    			<br></br>
+				    			<%= message.snippet%>
+				    		</li>
+				    		<div id="email-modal" uk-modal>
+							    <div id="email-display" class="uk-modal-dialog uk-modal-body">
+							        <h2 class="uk-modal-title">Headline</h2>
+							        <p><%= message.fullText%></p>
+							        <p class="uk-text-right">
+							            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+							            <button class="uk-button uk-button-primary" type="button">Save</button>
+							        </p>
+							    </div>
+							</div>
+			    		</div>
+			    	<%	}) %>
+			    </ul>
+			</div>
+			<iframe id="dev-docs-iframe" src="http://devdocs.io/" title="iframe example 1" width="1000" height="630" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen>
+				<p>Iframes Are Not Supported For This Browser</p>
+			</iframe>
+			<div>
+				<form id="job-search-form">
+					<fieldset class="uk-fieldset">
+						<input class="uk-input job-search-input" name="description" placeholder="Enter Job Position">
+						<input class="uk-input job-search-input" name="location" placeholder="Enter Job Location">						 
+			            <label><input class="uk-checkbox job-search-input" type="checkbox"> Github Jobs</label>
+			            <label><input class="uk-checkbox job-search-input" type="checkbox"> Glassdoor</label>
+			        </fieldset>
+					<input class="uk-button uk-button-primary" type="submit" value="Get Jobs">	
+				</form>
+				<ul id="job-search-results"></ul>
+			</div>            
         </ul>
-
     </div>
 </div>
 <% } else { %>
-<div uk-grid id="view-space" class="container"><h1 id="default-text"><%= googleMail %></h1></div>
+	<div uk-grid id="view-space" class="container"><h1 id="default-text"><%= googleMail %></h1></div>
 <% }%>
+
+
+<div uk-lightbox>
+    <a class="uk-button uk-button-default" href="images/image5.jpg">Open Lightbox</a>
+</div>

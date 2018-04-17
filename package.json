@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/AbrahamFergie/Peak#readme",
   "dependencies": {
+    "atob": "^2.0.3",
     "babel-cli": "^6.26.0",
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-latest": "^6.24.1",

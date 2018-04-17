@@ -1,24 +1,14 @@
-const express = require("express")
-const request = require("request")
-const fs = require("fs")
-
-const router = express.Router() 
-const passportGoogle = require("../auth/google");
-const utils = require("../utilities/index")
+const express = require("express"),
+	  request = require("request"),
+	  fs = require("fs"),
+	  router = express.Router(), 
+	  passportGoogle = require("../auth/google"),
+	  utils = require("../utilities/index")
 
 router.get("/", (req, res) => {
-
-	// console.log(req.user)
-	const userName = req.user ? req.user.user.google.name : "Hello There" 
-	const googleMail = req.user ? req.user.mailData : "Login In To See Mail"
+	const userName = req.user ? req.user.user.google.name : "Hello There", 
+		  googleMail = req.user ? req.user.mailData : "Login To Begin"
 	res.render("../views/pages/home", {userName, googleMail})
-})
-
-router.get("/profile", (req, res) => {
-
-	const userName = req.user ? req.user.displayName : "There" 
-
-	res.render("../views/pages/profile", userName )
 })
 
 router.get("/google", passportGoogle.authenticate(
@@ -33,12 +23,25 @@ router.get("/google", passportGoogle.authenticate(
 	)
 )
 
-router.get("/google/callback", passportGoogle.authenticate('google', { failureRedirect: '/' }),
+router.get(
+	"/google/callback",
+	passportGoogle.authenticate('google', { failureRedirect: '/' }),
 	function(req, res){
-		res.redirect('/')}
+		res.redirect('/')
+	}
 )
-router.get("/google/email-load", function(req, res){
-	
+router.post("/github-jobs", function(req, res){
+	const { description, location } = req.body,
+		  formattedDescription = utils.removeSpaces(description),
+		  formattedLocation = utils.removeSpaces(location),
+		  url = "https://jobs.github.com/positions.json?description="+ formattedDescription + "&location=" + formattedLocation
+	// console.log("req.body=============", description, location, url)
+	// "https://jobs.github.com/positions.json?description=node&location=Oakland"
+	request(url, (err, response, body) => {
+		if(err) console.log(err)
+		// console.log("========================", JSON.parse(body))
+		res.json(JSON.parse(body))
+	})
 })
 
 router.get('/logout', function(req, res) {

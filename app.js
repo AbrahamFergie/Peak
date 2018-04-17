@@ -6,7 +6,6 @@ const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
 const session = require("express-session")
 const passport = require("passport")
-
 const app = express()
 const port = process.env.PORT || "3000"
 const indexRoutes = require("./routes/index")
@@ -23,6 +22,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
