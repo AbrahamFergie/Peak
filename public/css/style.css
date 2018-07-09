@@ -16,6 +16,7 @@ footer {
     position: absolute;   
     bottom: 0px;
     width: 100%;
+    border-top: 5px solid #BE0032;
 }
 form {
     margin: 0;
@@ -31,6 +32,11 @@ h1 {
     font-size: 5em;
     font-weight: bolder;
     text-shadow: 0px 10px 10px #111414;
+}
+h3 {
+    color: #BE0032;
+    background-color: #fafafa;
+    padding: 5px 10px 5px 10px;
 }
 hr {
     margin: 0;
@@ -50,10 +56,10 @@ li.uk-active {
     padding-left: 5px;
 }
 main {
-    position: fixed;
-    height: 70%;
-    width: 70%;
-    bottom: 8.3%;
+    position: relative;
+    width: 100%;
+    height: 80%;
+    bottom: -4.1%;
 }
 ul {
     height: 42em;
@@ -61,8 +67,17 @@ ul {
 ul>li>ul {
     height: auto;
 }
+#content-holder {
+    width: 100%;
+}
 #default-text, #email-top {
     color: #fafafa;
+}
+#dev-docs-iframe {
+    position: relative;
+    width: 99%;
+    height: 134%;
+    top: -20%;
 }
 #email-display {
     width: 80%;
@@ -70,20 +85,36 @@ ul>li>ul {
 #email-top {
     font-size: 2em;
 }
+#footer-text {
+    color: #fafafa;
+}
+#get-jobs-button {
+    height: 12%;
+}
 #header-separator {
     color: #1c1c1c;
 }
 #job-search-form {
-    margin: 0px;
-    width: 50%;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    margin: 0px;
+    width: 100%;
+}
+#job-search-results {
+    padding: 0px 30px 0px 0px;
+}
+#loading {
+    height: 30%;
+    position: relative;
+    top: 25%;
+    left: 44%;
 }
 #login-button {
     display: block;
     position: fixed;
     top: 9%;
-    left: 45.6%;
+    left: 46.2%;
 }
 #mail-item {
     font-size: 1.3em;
@@ -97,22 +128,32 @@ ul>li>ul {
     width: 6.2em;
     padding: 0px;
 }
+#nav {
+    display: flex;
+    justify-content: space-around;
+    width: 99.4%;
+}
+#nav-ul {
+    display: flex;
+    height: 6%;
+    width: 270%;
+    justify-content: space-around;
+}
 #stick-switcher {
     position: sticky;
     top: 4em;
 }
 #view-space {
-    margin: 0;
+    margin: auto;
+    flex-direction: column;
+    width: 98.4%;
+    padding: 15px;
 }
 #view-space-button {
     width: 7em;
-    position: absolute;
-    top: 1%;
-    left: 2.4em;
     color: #fafafa;
     background: #BE0032;
     border: 1px solid #fafafa;
-    z-index: 1;
     outline: none;
     padding: 6px;
     font-size: 1em;
@@ -131,19 +172,30 @@ ul>li>ul {
     font-weight: bolder;
     text-shadow: 0px 10px 10px #1c1c1c;
 }
+.list-item {
+    border-top: 10px solid #BE0032;
+    padding: 10px;
+    list-style: none;
+}
 .main-container {
 	width: 100%;
     height: 100%;
 }
+.nav-buttons {
+    padding: 10px;
+    border: none;
+}
 .container {
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0,0,0,0.7);
     height: 100%;
     width: 100%; 
     overflow-y: scroll;
 }
 .footer-container {
-	background-color: rgba(0,0,0,0.6);
+	background-color: rgba(0,0,0,0.7);
     height: 3em;
+    width: 100%;  
+}
+.widen {
     width: 100%;
-   
 }

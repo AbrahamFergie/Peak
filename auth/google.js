@@ -11,18 +11,14 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.GOOGLE_REDIRECT_URI
   },
   (accessToken, refreshToken, profile, done) => {
-    // console.log(profile)
   	process.nextTick(function() {
-        // let mail = utils.gmail(accessToken, refreshToken)
-        // mail.then(mailData => {            
-            
-
+        let mail = utils.gmail(accessToken, refreshToken)
+        mail.then(mailData => {            
             User.findOne({ 'google.id' : profile.id }, function(err, user) {
                 if (err) return done(err);
 
                 if (user) {
-                    // user.google.gmailData = mailData                    
-                    return done(null, {user});
+                    return done(null, {user, mailData});
                 } else {
                     const newUser = new User();
                     newUser.google.id    = profile.id;
@@ -31,12 +27,11 @@ passport.use(new GoogleStrategy({
                     newUser.google.email = profile.emails[0].value;
                     newUser.save(function(err) {
                         if (err) throw err;
-                        // newUser.google.gmailData = mailData                        
-                        return done(null, {newUser});
+                        return done(null, {user: newUser, mailData});
                     });
                 }
             });
-        // })
+        })
         // try to find the user based on their google id
         // const google_mail     = new Gmail(accessToken),
               // google_calendar = new Gcalendar(accessToken),

@@ -2,8 +2,7 @@
 	let randNum = Math.floor(Math.random() * 44) + 1
 	
 	document.getElementsByTagName("body")[0].style.backgroundImage = `url(../images/image${randNum}.jpg)`
-	document.getElementById("view-space-button")
-		.addEventListener("click", toggleFullScreen)
+	document.getElementById("view-space-button").addEventListener("click", toggleFullScreen)
 	document.getElementById("job-search-form").addEventListener("submit", jobSearch)
 
 	function toggleFullScreen() {
@@ -12,42 +11,42 @@
 			devDocIframe = document.getElementById("dev-docs-iframe"),
 			loginBtnStyle = loginBtn.style.display
 			
-		loginBtn.style.display = loginBtnStyle === "none" ? "block" : "none"
-		main.style.width = main.style.width === "100%" ? "70%" : "100%" 
-		main.style.height = main.style.height === "95%" ? "70%" : "95%" 
-		main.style.bottom = main.style.bottom === "5%" ? "8.3%" : "5%"
-		devDocIframe.style.width = devDocIframe.style.width === "86%" ? "1000px" : "86%"
-		devDocIframe.style.height = devDocIframe.style.height === "93%" ? "550px" : "93%"
-		devDocIframe.style.bottom = devDocIframe.style.bottom === "0%" ? "8.3%" : "0%"
-		devDocIframe.style.position = devDocIframe.style.position === "absolute" ? "" : "absolute"
-		devDocIframe.style.top = devDocIframe.style.top === "10px" ? "0px" : "10px"
+		loginBtn.style.display = loginBtnStyle === "none" ? "block" : "none" 
+		main.style.height = main.style.height === "100%" ? "80%" : "100%" 
+		main.style.bottom = main.style.bottom === "0%" ? "-4.1%" : "0%"
+		devDocIframe.style.width = devDocIframe.style.width === "99%" ? "99%" : "99%"
+		devDocIframe.style.height = devDocIframe.style.height === "183%" ? "134%" : "183%"
+		devDocIframe.style.top = devDocIframe.style.top === "-44%" ? "-20%" : "-44%"
 	}
 	function jobSearch(event){
 		event.preventDefault()
-		let inputs = document.getElementsByClassName("job-search-input"),
+		let resultsContainer = document.getElementById("job-search-results"),
+			inputs = document.getElementsByClassName("job-search-input"),
 			bodyInputs = {
 				description: inputs[0].value,
 				location: inputs[1].value
 			}
-		console.log("form inputs=====================",inputs[2].checked, inputs[3].checked)
+		resultsContainer.innerHTML = "<img id='loading' src='https://zippy.gfycat.com/SkinnySeveralAsianlion.gif'>"
 		if(inputs[2].checked) {
 			fetch("/github-jobs", {
 				method: "POST",
 				headers: new Headers({"content-type": "application/json"}),
 				body: JSON.stringify(bodyInputs, null, 4)
 			}).then(response => {
-				console.log("===============in fetch", response )
 				return response.json().then(populateResults)
 			})			
+		}
+		if(inputs[3].checked){
+
 		}
 	}
 	function populateResults (data){
 		let resultsContainer = document.getElementById("job-search-results")
-		console.log("====================",data)
+		resultsContainer.innerHTML = ""
 		data.forEach(item => {
 			let listItem = document.createElement("li")
-			// console.log(item)
-			// console.log(`${item.title} ${item.company} ${item.description} ${item.created_at}`)
+
+			listItem.className = "list-item"
 			listItem.innerHTML = `<strong>${item.company}</strong> | ${item.title} | ${item.location} | ${item.description} ${item.created_at}`
 			resultsContainer.appendChild(listItem)
 		})

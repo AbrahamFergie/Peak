@@ -10,10 +10,14 @@ const app = express()
 const port = process.env.PORT || "3000"
 const indexRoutes = require("./routes/index")
 
-
-mongoose.connect(process.env.NODE_ENV === "development" ? 
-	"mongodb://localhost:27017/Peak" : process.env.MONGODB_URI
-).catch(err => console.log(err))
+let connectionType = ""
+if(process.env.NODE_ENV === "production"){
+  connectionType = process.env.MONGODB_URI
+}else {
+  connectionType = "mongodb://localhost:27017/Peak"
+}
+mongoose.connect(connectionType, { useNewUrlParser: true })
+  .catch(err => console.log(err))
 
 app.set("view engine", "ejs")
 
