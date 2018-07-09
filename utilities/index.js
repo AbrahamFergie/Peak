@@ -29,8 +29,7 @@ module.exports = {
 			    if (err) {
 			      console.log('The API returned an error: ' + err);
 			      return;
-			    }
-			    console.log("messages!", firstResponse.data.messages)
+			    }			    
 			    let messages = firstResponse.data.messages,
 					promises = messages.map((message) => {
 					return new Promise((resolve, reject) => {
@@ -40,28 +39,14 @@ module.exports = {
 						}, (err, secondResponse) => {
 							if(err) reject(err)
 							let emailMessage= "things", count = 0
-							console.log("secondResponse.data", Object.keys(secondResponse.data))
 							if(secondResponse.data.payload.body.size === 0){
-								console.log(
-									"========from if ================="
-								)   
-									emailMessage = atob(secondResponse.data.payload.parts[0].body.data)
-								// emailMessage = atob(secondResponse.data.payload.parts[0].body.data)
-								// console.log(secondResponse.data.payload.parts[0].body.data)
-						        // let encodedBody = secondResponse.data.payload.parts[0].body.data.replace(/-/g, '+').replace(/_/g, '/').replace(/\s/g, '');
-						        // console.log(decodeURIComponent(escape(window.atob(encodedBody))));								
+								emailMessage = atob(secondResponse.data.payload.parts[0].body.data)
 							}else {
-								console.log(
-									"===========from else============="
-								)
-									emailMessage = atob(secondResponse.data.payload.body.data)
-								// emailMessage = atob(secondResponse.data.payload.body.data)					
+								emailMessage = atob(secondResponse.data.payload.body.data)
 							}
-							if(!secondResponse.data){
-								console.log("didn't make it")
+							if(!secondResponse.data){								
 								count++
 							}else {
-								console.log("===========made",secondResponse.data.internalDate,"it=============")
 								count++
 							}
 							resolve({
@@ -72,8 +57,10 @@ module.exports = {
 						})	
 					}).catch(err => console.log)
 				});		
-				Promise.all(promises)
-					.then(data => res(data))
+				return Promise.all(promises)
+					.then(data => {
+						return res(data)
+					})
 					.catch(err => console.log)
 			});	
   		}).catch(err => console.log)
@@ -86,6 +73,5 @@ function _fixText(str) {
 		.replace(/&quot;/g, '"')
 }
 function _formatTime(time) {
-	console.log("==================timessaioheygaithgy",time)
 	return moment(parseInt(time)).format("Do of MMM YYYY HH:mm:ss")
 }

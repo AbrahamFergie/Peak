@@ -1,22 +1,23 @@
 <div class="uk-position-relative main-container">
     <form id="login-button" action="/google" method="GET">
-		<button id="main-buttons" class="uk-button uk-button-danger" type="submit">Login <i id="google-plus-icon" class="fab fa-google-plus"></i></button>
-    </form>
+		<button id="main-buttons" class="uk-button uk-button-danger" type="submit"><i id="google-plus-icon" class="fab fa-google-plus"></i>  Login</button>
+	</form>
 <% if(typeof googleMail === "object") { %>
-<div uk-grid id="view-space" class="container">
-	<button id="view-space-button">Full-Screen</button>
-    <div id="stick-switcher" class="uk-width-small@m">
-        <ul class="uk-nav uk-nav-default" uk-switcher="connect: #component-nav; animation: uk-animation-fade; toggle: > :not(.uk-nav-header)">
-            <li><a href="#">G-Mail</a></li>
-            <li><a href="#">Dev Docs</a></li>
-            <li><a href="#">Job Search</a></li>
-        </ul>
-    </div>
-    <div class="uk-width-expand@m">
+<div uk-grid id="view-space" class="container widen">
+	<div id="nav">
+		<button id="view-space-button">Toggle Screen</button>
+		<div id="stick-switcher" class="uk-width-small@m">
+			<ul id="nav-ul" class="uk-nav uk-nav-default" uk-switcher="connect: #component-nav; animation: uk-animation-fade; toggle: > :not(.uk-nav-header)">
+				<li class="nav-buttons"><a><h3>G-Mail</h3></a></li>
+				<li class="nav-buttons"><a><h3>Dev Docs</h3></a></li>
+				<li class="nav-buttons"><a><h3>Job Search</h3></a></li>
+			</ul>
+		</div>
+	</div>
+    <div id="content-holder" class="uk-width-expand@m">
         <ul id="component-nav" class="uk-switcher">
 	        <div>
 	            <div id="email-top" class="uk-heading-line uk-text-center"><u>Emails</u></div>
-			    <a class="uk-button uk-button-primary" href="#email-top" uk-scroll>Scroll Top</a>
 	            <ul class="uk-list uk-list-divider">
 			    	<% googleMail.forEach(function(message){ %>
 			    		<div class="uk-card-body">
@@ -39,9 +40,11 @@
 			    	<%	}) %>
 			    </ul>
 			</div>
-			<iframe id="dev-docs-iframe" src="http://devdocs.io/" title="iframe example 1" width="1000" height="630" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen>
-				<p>Iframes Are Not Supported For This Browser</p>
-			</iframe>
+			<div>
+				<iframe id="dev-docs-iframe" src="http://devdocs.io/" title="iframe example 1" width="1000" height="630" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen>
+					<p>Iframes Are Not Supported For This Browser</p>
+				</iframe>
+			</div>
 			<div>
 				<form id="job-search-form">
 					<fieldset class="uk-fieldset">
@@ -50,7 +53,7 @@
 			            <label><input class="uk-checkbox job-search-input" type="checkbox"> Github Jobs</label>
 			            <label><input class="uk-checkbox job-search-input" type="checkbox"> Glassdoor</label>
 			        </fieldset>
-					<input class="uk-button uk-button-primary" type="submit" value="Get Jobs">	
+					<input id="get-jobs-button" class="uk-button uk-button-primary" type="submit" value="Get Jobs">	
 				</form>
 				<ul id="job-search-results"></ul>
 			</div>            
@@ -60,8 +63,3 @@
 <% } else { %>
 	<div uk-grid id="view-space" class="container"><h1 id="default-text"><%= googleMail %></h1></div>
 <% }%>
-
-
-<div uk-lightbox>
-    <a class="uk-button uk-button-default" href="images/image5.jpg">Open Lightbox</a>
-</div>

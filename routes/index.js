@@ -7,7 +7,7 @@ const express = require("express"),
 
 router.get("/", (req, res) => {
 	const userName = req.user ? req.user.user.google.name : "Hello There", 
-		  googleMail = req.user ? req.user.mailData : "Login To Begin"
+	googleMail = req.user ? req.user.mailData : "Login To Begin"
 	res.render("../views/pages/home", {userName, googleMail})
 })
 
@@ -35,11 +35,9 @@ router.post("/github-jobs", function(req, res){
 		  formattedDescription = utils.removeSpaces(description),
 		  formattedLocation = utils.removeSpaces(location),
 		  url = "https://jobs.github.com/positions.json?description="+ formattedDescription + "&location=" + formattedLocation
-	// console.log("req.body=============", description, location, url)
-	// "https://jobs.github.com/positions.json?description=node&location=Oakland"
 	request(url, (err, response, body) => {
 		if(err) console.log(err)
-		// console.log("========================", JSON.parse(body))
+		console.log("========================", JSON.parse(body))
 		res.json(JSON.parse(body))
 	})
 })

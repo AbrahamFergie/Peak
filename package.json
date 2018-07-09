@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "babel-node": "babel-node --presets=latest",
-    "start:dev": "NODE_ENV=development nodemon --exec npm run babel-node -- ./app.js",
+    "start:dev": "SET NODE_ENV=development && nodemon --exec npm run babel-node -- ./app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
